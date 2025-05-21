@@ -8,9 +8,9 @@ import 'package:moon_design/src/theme/tokens/borders.dart';
 import 'package:moon_design/src/theme/tokens/tokens.dart';
 import 'package:moon_design/src/utils/color_tween_premul.dart';
 import 'package:moon_design/src/utils/extensions.dart';
-import 'package:moon_design/src/utils/squircle/squircle_border.dart';
 import 'package:moon_design/src/widgets/common/base_control.dart';
 import 'package:moon_tokens/moon_tokens.dart';
+import 'package:flutter/painting.dart';
 
 enum MoonButtonSize {
   xs,
@@ -469,9 +469,8 @@ class _MoonButtonState extends State<MoonButton>
                   decoration: widget.decoration ??
                       ShapeDecoration(
                         color: _backgroundColor!.value,
-                        shape: MoonSquircleBorder(
-                          borderRadius: effectiveBorderRadius
-                              .squircleBorderRadius(context),
+                        shape: RoundedSuperellipseBorder(
+                          borderRadius: effectiveBorderRadius,
                           side: BorderSide(
                             color: effectiveBorderColor,
                             width: widget.showBorder ? effectiveBorderWidth : 0,
