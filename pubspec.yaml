@@ -1,6 +1,6 @@
 name: moon_design
 description: Moon Design System for Flutter. A set of coherent, themable, and extensible widgets following the Moon Design System.
-version: 1.0.6
+version: 1.1.0
 homepage: https://flutter.moon.io/
 repository: https://github.com/coingaming/moon_flutter
 
@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  moon_icons: ^0.5.0
+  moon_icons: ^1.1.0
   moon_tokens: ^0.0.6
 
 dev_dependencies:

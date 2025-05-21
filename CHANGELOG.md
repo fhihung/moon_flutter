@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.0](https://github.com/coingaming/moon_flutter/compare/v1.0.7...v1.1.0) (2025-01-23)
+
+
+### Features
+
+* [MDS-1487] Bump moon_flutter to use the latest moon_flutter_icons ([#458](https://github.com/coingaming/moon_flutter/issues/458)) ([3065ce2](https://github.com/coingaming/moon_flutter/commit/3065ce2a207d92136596b7ea83d29310adfbdc38))
+
+## [1.0.7](https://github.com/coingaming/moon_flutter/compare/v1.0.6...v1.0.7) (2024-11-27)
+
+
+### Bug Fixes
+
+* [MDS-1415] Update dependencies ([#451](https://github.com/coingaming/moon_flutter/issues/451)) ([cffceac](https://github.com/coingaming/moon_flutter/commit/cffceac0ae93471db57084507bc59c8ce8102e49))
+
 ## [1.0.6](https://github.com/coingaming/moon_flutter/compare/v1.0.5...v1.0.6) (2024-10-09)
 
 
