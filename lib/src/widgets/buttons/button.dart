@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:moon_design/src/theme/button/button_size_properties.dart';
 import 'package:moon_design/src/theme/button/button_sizes.dart';
 import 'package:moon_design/src/theme/effects/effects_theme.dart';
@@ -7,10 +6,8 @@ import 'package:moon_design/src/theme/theme.dart';
 import 'package:moon_design/src/theme/tokens/borders.dart';
 import 'package:moon_design/src/theme/tokens/tokens.dart';
 import 'package:moon_design/src/utils/color_tween_premul.dart';
-import 'package:moon_design/src/utils/extensions.dart';
 import 'package:moon_design/src/widgets/common/base_control.dart';
 import 'package:moon_tokens/moon_tokens.dart';
-import 'package:flutter/painting.dart';
 
 enum MoonButtonSize {
   xs,
@@ -270,12 +267,9 @@ class MoonButton extends StatefulWidget {
   State<MoonButton> createState() => _MoonButtonState();
 }
 
-class _MoonButtonState extends State<MoonButton>
-    with SingleTickerProviderStateMixin {
-  final ColorTweenWithPremultipliedAlpha _backgroundColorTween =
-      ColorTweenWithPremultipliedAlpha();
-  final ColorTweenWithPremultipliedAlpha _textColorTween =
-      ColorTweenWithPremultipliedAlpha();
+class _MoonButtonState extends State<MoonButton> with SingleTickerProviderStateMixin {
+  final ColorTweenWithPremultipliedAlpha _backgroundColorTween = ColorTweenWithPremultipliedAlpha();
+  final ColorTweenWithPremultipliedAlpha _textColorTween = ColorTweenWithPremultipliedAlpha();
 
   Animation<Color?>? _backgroundColor;
   Animation<Color?>? _textColor;
@@ -285,9 +279,7 @@ class _MoonButtonState extends State<MoonButton>
   bool get _isEnabled => widget.onTap != null || widget.onLongPress != null;
 
   void _handleHoverEffect(bool shouldAnimate) {
-    shouldAnimate
-        ? _animationController?.forward()
-        : _animationController?.reverse();
+    shouldAnimate ? _animationController?.forward() : _animationController?.reverse();
   }
 
   MoonButtonSizeProperties _getMoonButtonSize(
@@ -296,23 +288,17 @@ class _MoonButtonState extends State<MoonButton>
   ) {
     switch (moonButtonSize) {
       case MoonButtonSize.xs:
-        return context.moonTheme?.buttonTheme.sizes.xs ??
-            MoonButtonSizes(tokens: MoonTokens.light).xs;
+        return context.moonTheme?.buttonTheme.sizes.xs ?? MoonButtonSizes(tokens: MoonTokens.light).xs;
       case MoonButtonSize.sm:
-        return context.moonTheme?.buttonTheme.sizes.sm ??
-            MoonButtonSizes(tokens: MoonTokens.light).sm;
+        return context.moonTheme?.buttonTheme.sizes.sm ?? MoonButtonSizes(tokens: MoonTokens.light).sm;
       case MoonButtonSize.md:
-        return context.moonTheme?.buttonTheme.sizes.md ??
-            MoonButtonSizes(tokens: MoonTokens.light).md;
+        return context.moonTheme?.buttonTheme.sizes.md ?? MoonButtonSizes(tokens: MoonTokens.light).md;
       case MoonButtonSize.lg:
-        return context.moonTheme?.buttonTheme.sizes.lg ??
-            MoonButtonSizes(tokens: MoonTokens.light).lg;
+        return context.moonTheme?.buttonTheme.sizes.lg ?? MoonButtonSizes(tokens: MoonTokens.light).lg;
       case MoonButtonSize.xl:
-        return context.moonTheme?.buttonTheme.sizes.xl ??
-            MoonButtonSizes(tokens: MoonTokens.light).xl;
+        return context.moonTheme?.buttonTheme.sizes.xl ?? MoonButtonSizes(tokens: MoonTokens.light).xl;
       default:
-        return context.moonTheme?.buttonTheme.sizes.md ??
-            MoonButtonSizes(tokens: MoonTokens.light).md;
+        return context.moonTheme?.buttonTheme.sizes.md ?? MoonButtonSizes(tokens: MoonTokens.light).md;
     }
   }
 
@@ -325,70 +311,52 @@ class _MoonButtonState extends State<MoonButton>
 
   @override
   Widget build(BuildContext context) {
-    final MoonButtonSizeProperties effectiveMoonButtonSize =
-        _getMoonButtonSize(context, widget.buttonSize);
+    final MoonButtonSizeProperties effectiveMoonButtonSize = _getMoonButtonSize(context, widget.buttonSize);
 
-    final BorderRadiusGeometry effectiveBorderRadius =
-        widget.borderRadius ?? effectiveMoonButtonSize.borderRadius;
+    final BorderRadiusGeometry effectiveBorderRadius = widget.borderRadius ?? effectiveMoonButtonSize.borderRadius;
 
-    final Color effectiveBorderColor = widget.borderColor ??
-        context.moonTheme?.buttonTheme.colors.borderColor ??
-        MoonColors.light.trunks;
+    final Color effectiveBorderColor =
+        widget.borderColor ?? context.moonTheme?.buttonTheme.colors.borderColor ?? MoonColors.light.trunks;
 
-    final double effectiveBorderWidth = widget.borderWidth ??
-        context.moonBorders?.defaultBorderWidth ??
-        MoonBorders.borders.defaultBorderWidth;
+    final double effectiveBorderWidth =
+        widget.borderWidth ?? context.moonBorders?.defaultBorderWidth ?? MoonBorders.borders.defaultBorderWidth;
 
-    final Color effectiveTextColor = widget.textColor ??
-        context.moonTheme?.buttonTheme.colors.textColor ??
-        MoonColors.light.textPrimary;
+    final Color effectiveTextColor =
+        widget.textColor ?? context.moonTheme?.buttonTheme.colors.textColor ?? MoonColors.light.textPrimary;
 
     final Color effectiveHoverEffectColor = widget.hoverEffectColor ??
         context.moonEffects?.controlHoverEffect.primaryHoverColor ??
-        MoonEffectsTheme(tokens: MoonTokens.light)
-            .controlHoverEffect
-            .primaryHoverColor;
+        MoonEffectsTheme(tokens: MoonTokens.light).controlHoverEffect.primaryHoverColor;
 
     final Color hoverColor = Color.alphaBlend(
       effectiveHoverEffectColor,
       widget.backgroundColor ?? Colors.transparent,
     );
 
-    final double effectiveHeight =
-        widget.height ?? effectiveMoonButtonSize.height;
+    final double effectiveHeight = widget.height ?? effectiveMoonButtonSize.height;
 
     final double effectiveGap = widget.gap ?? effectiveMoonButtonSize.gap;
 
-    final EdgeInsetsGeometry effectivePadding =
-        widget.padding ?? effectiveMoonButtonSize.padding;
+    final EdgeInsetsGeometry effectivePadding = widget.padding ?? effectiveMoonButtonSize.padding;
 
-    final EdgeInsets resolvedDirectionalPadding =
-        effectivePadding.resolve(Directionality.of(context));
+    final EdgeInsets resolvedDirectionalPadding = effectivePadding.resolve(Directionality.of(context));
 
     final EdgeInsetsGeometry correctedPadding = widget.padding == null
         ? EdgeInsetsDirectional.fromSTEB(
-            widget.leading == null && widget.label != null
-                ? resolvedDirectionalPadding.left
-                : 0,
+            widget.leading == null && widget.label != null ? resolvedDirectionalPadding.left : 0,
             resolvedDirectionalPadding.top,
-            widget.trailing == null && widget.label != null
-                ? resolvedDirectionalPadding.right
-                : 0,
+            widget.trailing == null && widget.label != null ? resolvedDirectionalPadding.right : 0,
             resolvedDirectionalPadding.bottom,
           )
         : resolvedDirectionalPadding;
 
     final Duration effectiveHoverEffectDuration = widget.hoverEffectDuration ??
         context.moonEffects?.controlHoverEffect.hoverDuration ??
-        MoonEffectsTheme(tokens: MoonTokens.light)
-            .controlHoverEffect
-            .hoverDuration;
+        MoonEffectsTheme(tokens: MoonTokens.light).controlHoverEffect.hoverDuration;
 
     final Curve effectiveHoverEffectCurve = widget.hoverEffectCurve ??
         context.moonEffects?.controlHoverEffect.hoverCurve ??
-        MoonEffectsTheme(tokens: MoonTokens.light)
-            .controlHoverEffect
-            .hoverCurve;
+        MoonEffectsTheme(tokens: MoonTokens.light).controlHoverEffect.hoverCurve;
 
     _animationController ??= AnimationController(
       duration: effectiveHoverEffectDuration,
@@ -420,7 +388,7 @@ class _MoonButtonState extends State<MoonButton>
       showPulseEffect: widget.showPulseEffect,
       showPulseEffectJiggle: widget.showPulseEffectJiggle,
       showScaleEffect: widget.showScaleEffect,
-      borderRadius: effectiveBorderRadius,
+      borderRadius: widget.borderRadius,
       backgroundColor: widget.backgroundColor,
       focusEffectColor: widget.focusEffectColor,
       pulseEffectColor: widget.pulseEffectColor,
@@ -446,8 +414,7 @@ class _MoonButtonState extends State<MoonButton>
         bool isFocused,
         bool isPressed,
       ) {
-        final bool canAnimate =
-            _isEnabled && (isHovered || isFocused || isPressed);
+        final bool canAnimate = _isEnabled && (isHovered || isFocused || isPressed);
 
         _handleHoverEffect(canAnimate);
 
@@ -460,8 +427,7 @@ class _MoonButtonState extends State<MoonButton>
                 size: effectiveMoonButtonSize.iconSizeValue,
               ),
               child: DefaultTextStyle(
-                style: effectiveMoonButtonSize.textStyle
-                    .copyWith(color: _textColor!.value),
+                style: effectiveMoonButtonSize.textStyle.copyWith(color: _textColor!.value),
                 child: Container(
                   width: widget.width,
                   height: effectiveHeight,
@@ -469,14 +435,15 @@ class _MoonButtonState extends State<MoonButton>
                   decoration: widget.decoration ??
                       ShapeDecoration(
                         color: _backgroundColor!.value,
-                        shape: RoundedSuperellipseBorder(
-                          borderRadius: effectiveBorderRadius,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: widget.borderRadius ??
+                              BorderRadius.circular(
+                                16,
+                              ),
                           side: BorderSide(
                             color: effectiveBorderColor,
                             width: widget.showBorder ? effectiveBorderWidth : 0,
-                            style: widget.showBorder
-                                ? BorderStyle.solid
-                                : BorderStyle.none,
+                            style: widget.showBorder ? BorderStyle.solid : BorderStyle.none,
                           ),
                         ),
                       ),
@@ -493,12 +460,10 @@ class _MoonButtonState extends State<MoonButton>
                     children: [
                       if (widget.leading != null)
                         Container(
-                          margin:
-                              EdgeInsets.symmetric(horizontal: effectiveGap),
-                          alignment:
-                              Directionality.of(context) == TextDirection.ltr
-                                  ? Alignment.centerLeft
-                                  : Alignment.centerRight,
+                          margin: EdgeInsets.symmetric(horizontal: effectiveGap),
+                          alignment: Directionality.of(context) == TextDirection.ltr
+                              ? Alignment.centerLeft
+                              : Alignment.centerRight,
                           child: widget.leading,
                         ),
                       if (widget.label != null)
@@ -507,12 +472,10 @@ class _MoonButtonState extends State<MoonButton>
                         ),
                       if (widget.trailing != null)
                         Container(
-                          margin:
-                              EdgeInsets.symmetric(horizontal: effectiveGap),
-                          alignment:
-                              Directionality.of(context) == TextDirection.ltr
-                                  ? Alignment.centerRight
-                                  : Alignment.centerLeft,
+                          margin: EdgeInsets.symmetric(horizontal: effectiveGap),
+                          alignment: Directionality.of(context) == TextDirection.ltr
+                              ? Alignment.centerRight
+                              : Alignment.centerLeft,
                           child: widget.trailing,
                         ),
                     ],
@@ -523,15 +486,13 @@ class _MoonButtonState extends State<MoonButton>
                     children: [
                       if (widget.leading != null)
                         Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: effectiveGap),
+                          padding: EdgeInsets.symmetric(horizontal: effectiveGap),
                           child: widget.leading,
                         ),
                       if (widget.label != null) widget.label!,
                       if (widget.trailing != null)
                         Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: effectiveGap),
+                          padding: EdgeInsets.symmetric(horizontal: effectiveGap),
                           child: widget.trailing,
                         ),
                     ],
